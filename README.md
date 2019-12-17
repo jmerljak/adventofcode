@@ -3,7 +3,7 @@ Solutions to [Advent of Code](https://adventofcode.com/) puzzles.
 
 | Year | Programming Language | Done  |
 | ---- | -------------------- | ----- |
-| 2018 | Scala                | 15/25 |
+| 2018 | Scala                | 30/50 |
 
 ## Disclaimer
 I take AoC as an opportunity to learn new programming languages and practice programming.
