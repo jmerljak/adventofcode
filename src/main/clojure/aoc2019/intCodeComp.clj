@@ -18,12 +18,14 @@
 
 (defn run
   ([program]
-   (run program []))
-  ([program, input]
+   (run program [] 0 false))
+  ([program input]
+   (run program input 0 false))
+  ([program input pointer pause-on-output]
    (def state program)
    (def inputVals input)
    (def output nil)
-   (loop [i 0]
+   (loop [i pointer]
      (let [instruction (state i)]
 
        (def opcode (mod instruction 100))
@@ -56,7 +58,11 @@
          4 (let [in1 (resolve-value state mode-p1 (state (+ i 1)))]
 
              (def output in1)                               ; write to output
-             (recur (+ i 2)))
+             (if pause-on-output
+               [state output (+ i 2)]                       ; return
+               (recur (+ i 2))                              ; continue
+               )
+             )
 
          5 (let [in1 (resolve-value state mode-p1 (state (+ i 1)))
                  in2 (resolve-value state mode-p2 (state (+ i 2)))]
@@ -88,7 +94,7 @@
              (def state (assoc state out (if (= in1 in2) 1 0)))
              (recur (resolve-pointer i out 4)))
 
-         99 [state output]
+         99 [state output nil]
 
          (throw (Exception. (str "Illegal opcode: " opcode))))
        )
