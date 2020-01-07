@@ -56,7 +56,7 @@
       (do
         (def state (response 0))
         (def states (apply conj (conj (subvec states 0 i) [state pointer]) (subvec states (inc i))))
-        (def output (response 1))
+        (def output (last (response 1)))
 
         (if
           (< i 4)
