@@ -1,11 +1,9 @@
 (ns aoc2019.day05
   (:require [utils]
-            [aoc2019.intCodeComp :as comp]
-            [clojure.string :as str]))
+            [aoc2019.intCodeComp :as comp]))
 
 ; data
-(def line (utils/get-line "input05"))
-(def program (vec (map read-string (str/split line #","))))
+(def program (comp/load-program "input05"))
 
 ; part 1
 (def code1 (comp/run-get-output program [1]))

@@ -1,16 +1,13 @@
 (ns aoc2019.day02
   (:require [utils]
-            [aoc2019.intCodeComp :as comp]
-            [clojure.string :as str]))
+            [aoc2019.intCodeComp :as comp]))
 
 ; data
-(def line (utils/get-line "input02"))
-(def input (vec (map read-string (str/split line #","))))
-;(println "input =" input)
+(def program (comp/load-program "input02"))
 
 ; restore state
 (defn restore-state [v1 v2]
-  (assoc (assoc input 1 v1) 2 v2))
+  (assoc (assoc program 1 v1) 2 v2))
 
 ; part 1
 (def state1 (restore-state 12 2))

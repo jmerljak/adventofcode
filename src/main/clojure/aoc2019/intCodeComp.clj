@@ -1,4 +1,10 @@
-(ns aoc2019.intCodeComp)
+(ns aoc2019.intCodeComp
+  (:require [utils]
+            [clojure.string :as str]))
+
+; loads program
+(defn load-program [file-name]
+  (vec (map read-string (str/split (utils/get-line file-name) #","))))
 
 ; resolve value based on parameter mode
 (defn resolve-value [state mode param relative-base]

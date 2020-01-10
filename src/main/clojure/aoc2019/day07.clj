@@ -1,11 +1,9 @@
 (ns aoc2019.day07
   (:require [utils]
-            [aoc2019.intCodeComp :as comp]
-            [clojure.string :as str]))
+            [aoc2019.intCodeComp :as comp]))
 
 ; data
-(def line (utils/get-line "input07"))
-(def program (vec (map read-string (str/split line #","))))
+(def program (comp/load-program "input07"))
 
 ; https://stackoverflow.com/a/26076537
 (defn permutations [colls]
