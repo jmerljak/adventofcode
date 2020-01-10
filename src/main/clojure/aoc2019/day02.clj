@@ -10,11 +10,13 @@
   (assoc (assoc program 1 v1) 2 v2))
 
 ; part 1
-(def state1 (restore-state 12 2))
-(println "result 1 =" ((comp/run-get-state state1) 0))      ; 6327510
+(defn part1 []
+  ((comp/run-get-state (restore-state 12 2)) 0))
+
+(println "result 1 =" (part1))                              ; 6327510
 
 ; part 2
-(def result2
+(defn part2 []
   (some
     #(if
        (= ((comp/run-get-state (restore-state (% 0) (% 1))) 0) 19690720)
@@ -24,5 +26,5 @@
       [v1 v2]))
   )
 
-(println "result 2 =" result2)                              ; 4112
+(println "result 2 =" (part2))                              ; 4112
 

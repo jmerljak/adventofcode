@@ -28,9 +28,10 @@
     )
   )
 
-(def phase-perm1 (permutations (range 0 5)))
-(def max-output1 (apply max (map amplify phase-perm1)))
-(println "highest output 1 =" max-output1)                  ; 45730
+(defn part1 []
+  (apply max (map amplify (permutations (range 0 5)))))
+
+(println "highest output 1 =" (part1))                      ; 45730
 
 ; part 2
 (defn amplify-loop [phases]
@@ -69,6 +70,7 @@
     )
   )
 
-(def phase-perm2 (permutations (range 5 10)))
-(def max-output2 (apply max (map amplify-loop phase-perm2)))
-(println "highest output 2 =" max-output2)                  ; 5406484
+(defn part2 []
+  (apply max (map amplify-loop (permutations (range 5 10)))))
+
+(println "highest output 2 =" (part2))                      ; 5406484
