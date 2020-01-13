@@ -4,7 +4,9 @@
             [aoc2019.day02 :as day02]
             [aoc2019.day05 :as day05]
             [aoc2019.day07 :as day07]
-            [aoc2019.day09 :as day09]))
+            [aoc2019.day09 :as day09]
+            [aoc2019.day11 :as day11]
+            ))
 
 (assert (= (day02/part1) 6327510))
 (assert (= (day02/part2) 4112))
@@ -17,3 +19,5 @@
 
 (assert (= (day09/part1) 2427443564))
 (assert (= (day09/part2) 87221))
+
+(assert (= (day11/part1) 2293))

@@ -33,14 +33,16 @@
 
 (defn run
   ([program]
-   (run program [] 0 false))
+   (run program [] 0 false 0))
   ([program input]
-   (run program input 0 false))
+   (run program input 0 false 0))
   ([program input pointer pause-on-output]
+   (run program input pointer pause-on-output 0))
+  ([program input pointer pause-on-output address-offset]
    (def state program)
    (def inputVals input)
    (def output [])
-   (def relative-base 0)
+   (def relative-base address-offset)
    (loop [i pointer]
      (let [instruction (state i)]
 
@@ -75,7 +77,7 @@
 
              (def output (conj output in1))                 ; write to output
              (if pause-on-output
-               [state output (+ i 2)]                       ; return
+               [state output (+ i 2) relative-base]         ; return
                (recur (+ i 2))                              ; continue
                )
              )
@@ -115,7 +117,7 @@
              (def relative-base (+ relative-base in1))
              (recur (+ i 2)))
 
-         99 [state output nil]
+         99 [state output nil nil]
 
          (throw (Exception. (str "Illegal opcode: " opcode))))
        )
