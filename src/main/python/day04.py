@@ -28,7 +28,7 @@ def is_valid_strict(passport: str) -> bool:
            (number_between(passport, "hgt:", 3, 150, 193, "cm") | number_between(passport, "hgt:", 2, 59, 76, "in")) & \
            (re.search("hcl:#[0-9a-f]{6}", passport) is not None) & \
            (re.search("ecl:(amb|blu|brn|gry|grn|hzl|oth)", passport) is not None) & \
-           (re.search("pid:[0-9]{9}\s", passport + " ") is not None)
+           (re.search("pid:[0-9]{9}\\s", passport + " ") is not None)
 
 
 def main():

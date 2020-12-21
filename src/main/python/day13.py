@@ -7,7 +7,7 @@ def main():
     busses = data[1].split(",")
 
     # part 1
-    relevant = [int(b) for b in filter(lambda b: b != 'x', busses)]
+    relevant = [int(b) for b in busses if b != 'x']
     t1, found, bus = 0, False, None
     while not found:
         t1 = t1 + 1

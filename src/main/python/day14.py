@@ -1,7 +1,7 @@
 from util import read_lines
 
 
-def apply_mask(value, mask):
+def mask_value(value, mask):
     b_val = '{:0>36b}'.format(int(bin(value)[2:]))
     new_val = ""
     for i in range(0, 36):
@@ -39,7 +39,7 @@ def main():
             mask = inst[7:]
         else:
             address = int(inst[inst.index('[') + 1:inst.index(']')])
-            value = apply_mask(int(inst[inst.index('=') + 2:]), mask)
+            value = mask_value(int(inst[inst.index('=') + 2:]), mask)
             memory.update({address: value})
 
     result1 = sum(memory.values())

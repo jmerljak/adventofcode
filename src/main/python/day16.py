@@ -27,7 +27,6 @@ def find_possible_indexes(tickets, rule):
     for i in range(0, len(tickets[0])):
         valid = True
         for ticket in tickets:
-            # print(ticket[i])
             if not is_valid(ticket[i], rule):
                 valid = False
                 break
@@ -52,28 +51,36 @@ def main():
     tickets = [[int(v) for v in line.split(',')] for line in data[len(rules) + 5:]]
 
     # part 1
-    result1 = sum(map(lambda t: sum_error_values(t, rules), tickets))
+    result1 = sum([sum_error_values(t, rules) for t in tickets])
     print("result1 =", result1)  # 32835
 
     # part 2
-    valid_tickets = list(filter(lambda t: sum_error_values(t, rules) == 0, tickets))
+    valid_tickets = [t for t in tickets if sum_error_values(t, rules) == 0]
 
     positions = {}
     for rule in rules:
         indexes = find_possible_indexes([my_ticket] + valid_tickets, rule)
-        print(indexes)
         positions.update(indexes)
 
-    # by manually analysing possible indexes we determine
-    # departure values are at positions 1, 2, 6, 13, 14 and 15
-    # TODO solve with code
+    keys = sorted(positions, key=lambda p: len(positions.get(p)))
 
-    result2 = my_ticket[1] * \
-              my_ticket[2] * \
-              my_ticket[6] * \
-              my_ticket[13] * \
-              my_ticket[14] * \
-              my_ticket[15]
+    for k1 in keys:
+        for k2 in keys:
+            if k1 == k2:
+                continue
+            in1 = positions.get(k1)
+            in2 = positions.get(k2)
+            if len(in1) >= len(in2):
+                positions.update({k1: in1.difference(in2)})
+            else:
+                positions.update({k2: in2.difference(in1)})
+
+    result2 = my_ticket[next(iter(positions.get('departure location')))] * \
+              my_ticket[next(iter(positions.get('departure station')))] * \
+              my_ticket[next(iter(positions.get('departure platform')))] * \
+              my_ticket[next(iter(positions.get('departure track')))] * \
+              my_ticket[next(iter(positions.get('departure date')))] * \
+              my_ticket[next(iter(positions.get('departure time')))]
     print("result2 =", result2)  # 514662805187
 
 
