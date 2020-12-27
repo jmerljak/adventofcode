@@ -5,7 +5,7 @@ Solutions to [Advent of Code](https://adventofcode.com/) puzzles.
 | ---- | -------------------- | ----- |
 | 2018 | Scala                | 30/50 |
 | 2019 | Clojure              | 22/50 |
-| 2020 | Python               | 44/50 |
+| 2020 | Python               | 46/50 |
 
 ## Disclaimer
 I take AoC as an opportunity to learn new programming languages and practice programming.
