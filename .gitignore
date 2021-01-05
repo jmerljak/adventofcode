@@ -4,4 +4,6 @@
 lib/
 target/
 out/
+venv/
+__pycache__/
 *.iml
